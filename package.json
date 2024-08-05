@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@revolist/revogrid": "^4.8.18",
+    "@revolist/revogrid": "^4.9.0",
     "@stencil/store": "^2.0.16",
     "@types/lodash": "^4.17.7",
     "lodash": "^4.17.21"
