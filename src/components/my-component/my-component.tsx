@@ -1,32 +1,35 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { ColumnRegular } from '@revolist/revogrid';
+import { defineCustomElements } from '@revolist/revogrid/loader'
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.css',
   shadow: true,
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+  columns: ColumnRegular[] = [
+    { prop: "id", name: "ID" },
+    { prop: "name", name: "Name" },
+    { prop: "age", name: "Age" },
+    { prop: "email", name: "Email" },
+  ];
+  source: any[] = [
+    { id: 1, name: "John1", age: 30, email: "xxx@xxx.xxx" },
+    { id: 2, name: "Mike2", age: 25, email: "www@www.www" },
+    { id: 3, name: "John3", age: 30, email: "xxx@xxx.xxx" },
+    { id: 4, name: "Mike4", age: 25, email: "www@www.www" },
+    { id: 5, name: "John5", age: 30, email: "xxx@xxx.xxx" },
+    { id: 6, name: "Mike6", age: 25, email: "www@www.www" },
+    { id: 7, name: "John7", age: 30, email: "xxx@xxx.xxx" },
+    { id: 8, name: "Mike8", age: 25, email: "www@www.www" },
+    { id: 9, name: "John9", age: 30, email: "xxx@xxx.xxx" },
+    { id: 10, name: "Mike10", age: 25, email: "www@www.www" },
+  ];
+  componentWillLoad() {
+    // initiate revogrid
+    return defineCustomElements();
   }
-
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return <revo-grid filter={true} columns={this.columns} source={this.source} />;
   }
 }
